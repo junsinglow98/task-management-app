@@ -1,0 +1,94 @@
+.outerBox {
+    padding: 8px; /* Adjust the padding value as needed */
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.listDateHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.listDates{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.listTasks{
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.tasks{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dates{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.addTask{
+    margin-top: 24px;
+    width: 150px;
+    height: 20;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.taskList{
+    margin-top: 24px;
+    width: 150px;
+    height: 20;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.listDateLeftButton {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.listDateRightButton {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+@media (max-width: 768px) {
+    .listDates{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .listTasks{
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+}
