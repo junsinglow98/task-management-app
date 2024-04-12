@@ -28,7 +28,7 @@ function ListTask() {
     setIsHovered('');
   };
 
-  
+
   const handleTaskCompletionDirect = (taskId, completed, event) => {
     editTaskComplete(taskId, !completed)
   };
@@ -45,17 +45,17 @@ function ListTask() {
 
   const handleChange = (taskId, event) => {
     const newPriority = event.target.value;
-  
+
     const updatedTasks = tasks.map(task => {
       if (task.id === taskId) {
         return { ...task, priority: newPriority };
       }
       return task;
     });
-  
+
     setTasks(updatedTasks);
   };
-  
+
 
   const handleSave = (id) => {
     editTask(id)
@@ -63,14 +63,14 @@ function ListTask() {
 
   const handleTaskNameChange = (taskId, event) => {
     const name = event.target.value;
-  
+
     const updatedTasks = tasks.map(task => {
       if (task.id === taskId) {
         return { ...task, name: name };
       }
       return task;
     });
-  
+
     setTasks(updatedTasks);
   };
 
@@ -87,7 +87,7 @@ function ListTask() {
       return "red"
     } else {
       return "black"
-    } 
+    }
   };
 
   const renderTasksInRange = () => {
@@ -116,70 +116,70 @@ function ListTask() {
   const renderAddTaskForm = (task, index) => {
     return (
       <Box>
-      { task.editing &&       
-        <Paper className="addTask" square={false}>
-          <Stack spacing={2} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-            <Stack display="flex" flexDirection="row" alignItems="center" justifyContent="center">
-              <Checkbox checked={task.completed} onChange={(event) => handleTaskCompletion(task.id, event)}/>
-              <TextField
-                size="small"
-                value={task.name}
-                variant="outlined"
-                onChange={(event) => handleTaskNameChange(task.id, event)}
-              />
-            </Stack>
-            <FormControl fullWidth>
-              <InputLabel id={`priority-select-label-${task.id}`}>Priority</InputLabel>
-              <Select
-                size="small"
-                labelId={`priority-select-label-${task.id}`}
-                id={`priority-select-${task.id}`}
-                value={task.priority} 
-                label="Priority"
-                onChange={(event) => handleChange(task.id, event)}
-              >
-                <MenuItem value={1}>Low</MenuItem>
-                <MenuItem value={2}>Medium</MenuItem>
-                <MenuItem value={3}>High</MenuItem>
-              </Select>
-            </FormControl>
-            <Stack direction="row" spacing={2} display="flex" justifyContent="space-between">
-              <IconButton aria-label="save" onClick={() => handleSave(task.id)}>
-                <CheckIcon />
-              </IconButton>
-              <IconButton aria-label="delete" onClick={() => handleDelete(task.id)}>
-                <DeleteIcon />
-              </IconButton>
-            </Stack>
-          </Stack>
-        </Paper>
-      }
-      { !task.editing &&
-        <Paper className="addTask" square={false} onMouseEnter={() => handleMouseEnter(task.id)} onMouseLeave={()=> handleMouseLeave(task.id)}>
-          <Stack spacing={2} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-            <Stack display="flex" flexDirection="row" alignItems="center" justifyContent="center">
-              <Checkbox checked={task.completed} onChange={(event) => handleTaskCompletionDirect(task.id, task.completed, event)}/>
-              <Box fontSize='10px' size="small" color={notifyTaskPriority(task)} 
-            sx={{
-              maxWidth: '70%', 
-              overflow: 'hidden',
-              whiteSpace: 'nowrap', 
-              textOverflow: 'ellipsis', 
-            }}
-          >{task.name}</Box>
-              {isHovered == task.id && (
-                <IconButton
+        {task.editing &&
+          <Paper className="addTask" square={false}>
+            <Stack spacing={2} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+              <Stack display="flex" flexDirection="row" alignItems="center" justifyContent="center">
+                <Checkbox checked={task.completed} onChange={(event) => handleTaskCompletion(task.id, event)} />
+                <TextField
                   size="small"
-                  aria-label="edit"
-                  onClick={() => handleSave(task.id)}
+                  value={task.name}
+                  variant="outlined"
+                  onChange={(event) => handleTaskNameChange(task.id, event)}
+                />
+              </Stack>
+              <FormControl fullWidth>
+                <InputLabel id={`priority-select-label-${task.id}`}>Priority</InputLabel>
+                <Select
+                  size="small"
+                  labelId={`priority-select-label-${task.id}`}
+                  id={`priority-select-${task.id}`}
+                  value={task.priority}
+                  label="Priority"
+                  onChange={(event) => handleChange(task.id, event)}
                 >
-                  <EditIcon />
+                  <MenuItem value={1}>Low</MenuItem>
+                  <MenuItem value={2}>Medium</MenuItem>
+                  <MenuItem value={3}>High</MenuItem>
+                </Select>
+              </FormControl>
+              <Stack direction="row" spacing={2} display="flex" justifyContent="space-between">
+                <IconButton aria-label="save" onClick={() => handleSave(task.id)}>
+                  <CheckIcon />
                 </IconButton>
-              )}
+                <IconButton aria-label="delete" onClick={() => handleDelete(task.id)}>
+                  <DeleteIcon />
+                </IconButton>
+              </Stack>
             </Stack>
-          </Stack>
-        </Paper>
-      }
+          </Paper>
+        }
+        {!task.editing &&
+          <Paper className="addTask" square={false} onMouseEnter={() => handleMouseEnter(task.id)} onMouseLeave={() => handleMouseLeave(task.id)}>
+            <Stack spacing={2} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+              <Stack display="flex" flexDirection="row" alignItems="center" justifyContent="center">
+                <Checkbox checked={task.completed} onChange={(event) => handleTaskCompletionDirect(task.id, task.completed, event)} />
+                <Box fontSize='10px' size="small" color={notifyTaskPriority(task)}
+                  sx={{
+                    maxWidth: '70%',
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                    textOverflow: 'ellipsis',
+                  }}
+                >{task.name}</Box>
+                {isHovered == task.id && (
+                  <IconButton
+                    size="small"
+                    aria-label="edit"
+                    onClick={() => handleSave(task.id)}
+                  >
+                    <EditIcon />
+                  </IconButton>
+                )}
+              </Stack>
+            </Stack>
+          </Paper>
+        }
       </Box>
     );
   };

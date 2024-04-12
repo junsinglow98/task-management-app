@@ -36,7 +36,6 @@ export const DataProvider = ({ children }) => {
   const getTasks = () => {
     axios.get('http://localhost:3001/tasks')
       .then(response => {
-        console.log(response.data);
         setTasks(response.data);
       })
       .catch(error => {
@@ -59,7 +58,7 @@ export const DataProvider = ({ children }) => {
       date: selectedDate
     })
     .then(response => {
-      getTasks()
+      setTasks(response.data);
     })
     .catch(error => {
       console.error('Error adding task:', error);
@@ -69,7 +68,7 @@ export const DataProvider = ({ children }) => {
   const deleteTask = (id) => {
     axios.delete(`http://localhost:3001/tasks/${id}`)
       .then(response => {
-        getTasks()
+        setTasks(response.data);
       })
       .catch(error => {
         console.error('Error deleting task:', error);
@@ -86,11 +85,12 @@ export const DataProvider = ({ children }) => {
       directEdit: directEdit
       })
       .then(response => {
-        getTasks()
+        setTasks(response.data);
       })
       .catch(error => {
         console.error('Error deleting task:', error);
       });
+
   };
 
   const editTaskComplete = (id, completed) => {
@@ -98,7 +98,7 @@ export const DataProvider = ({ children }) => {
       completed: completed
     })
     .then(response => {
-      getTasks()
+      setTasks(response.data);
     })
     .catch(error => {
       console.error('Error adding task:', error);

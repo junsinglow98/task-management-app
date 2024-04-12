@@ -32,7 +32,7 @@ app.post("/tasks", (req, res) => {
 
   // Push the task to the tasks array
   tasks.push(task);
-  res.status(201).json();
+  res.json(tasks);
 });
 
 // PUT a task by ID
@@ -49,7 +49,7 @@ app.put("/tasks/:id", (req, res) => {
     tasks[taskIndex].completed = completed;
     tasks[taskIndex].priority = priority;
     tasks[taskIndex].editing = !tasks[taskIndex].editing;
-    res.status(201).json()
+    res.json(tasks);
   } else {
     res.status(404).json({ message: 'Task not found' });
   }
@@ -66,7 +66,7 @@ app.put("/tasks/completed/:id", (req, res) => {
   // Update task status
   if (taskIndex !== -1) {
     tasks[taskIndex].completed = completed;
-    res.status(201).json()
+    res.json(tasks);
   } else {
     res.status(404).json({ message: 'Task not found' });
   }
@@ -82,7 +82,7 @@ app.delete("/tasks/:id", (req, res) => {
   // Remove the task from the tasks array
   if (taskIndex !== -1) {
     tasks.splice(taskIndex, 1);
-    res.status(201).json();
+    res.json(tasks);
   } else {
     res.status(404).json({ error: "Task not found" });
   }
